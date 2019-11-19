@@ -1,5 +1,5 @@
 .idea
-__pycache_
+__pycache__
 .db
 .sqlite3
 *.log*
