@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}主页{% endblock %}-柚课后台管理系统</title>
+
+    {% include 'basic/css.html' %}
+
+    {% block css %}
+
+    {% endblock %}
+</head>
+<body>
+{% include 'basic/top.html' %}
+
+<section>
+    <div class="container-fluid">
+        <div class="row ">
+
+            {% include 'basic/menu.html' %}
+
+
+            <div class="col-xs-10">
+                <br/>
+                {% block content %}
+                    <ol class="breadcrumb">
+                        <li class="active"><span class="glyphicon glyphicon-home"></span>&nbsp;后台首页</li>
+                    </ol>
+                    <h1 class="text-center text-white">物资管理调度系统</h1>
+                {% endblock %}
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer class="bg-primary navbar-fixed-bottom">
+    <p class="text-center text-white">版权所有&copy;千锋教育-西安校区Python1904研发团队</p>
+</footer>
+
+{% include 'basic/js.html' %}
+{% block js %}
+
+{% endblock %}
+
+</body>
+</html>
