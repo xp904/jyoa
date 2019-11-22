@@ -25,10 +25,14 @@
 
             <div class="col-xs-10">
                 <br/>
-                {% block content %}
                     <ol class="breadcrumb">
-                        <li class="active"><span class="glyphicon glyphicon-home"></span>&nbsp;后台首页</li>
+                        <li class="active"><span class="glyphicon glyphicon-home"></span> {% block content_nav_home %}后台首页{% endblock %}</li>
+                        {% block content_nav %}
+
+                        {% endblock %}
                     </ol>
+
+                {% block content %}
                     <h1 class="text-center text-white">物资管理调度系统</h1>
                 {% endblock %}
             </div>
