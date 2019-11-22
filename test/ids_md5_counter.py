@@ -4,19 +4,22 @@ import time
 import hashlib
 from collections import Counter
 
+
 def compute_time(f):
     def wrapper(*args):
         start_time = time.time()
         ret = f(*args)
         timedelta = time.time() - start_time
-        print('耗时（秒）',timedelta)
+        print(f'{f.__name__} 函数耗时（秒）', timedelta)
 
         return ret
+
     return wrapper
 
 
 def md5(id):
     return hashlib.md5(id.encode()).hexdigest()
+
 
 def clear_data():
     lines = []
@@ -29,31 +32,21 @@ def clear_data():
     return lines
 
 
-is_finded = False
-ret = []
-
-
-def async_find(datas, id_md5, md5_id):
-    pass
-
-
-def find_id(id_, md5_ids):
-    id_md5 = md5(id_)
-    for _id, type_ in md5_ids:
-        if id_ == id_md5:
-
-            break
-
-
+@compute_time
 def find_all_id():
-    id_md5s = clear_data()
+    id_md5s = clear_data()  # 清除没有对应类型的数据
+    id_md5s_dict = dict(id_md5s)  # 将剩余的数据转成字典（key: md5(id),  value: 类型）
+
+    types = []
 
     with open('ids.txt', 'r') as f_:
         for id_ in f_:
-            find_id(id_, id_md5s)
+            type_ = id_md5s_dict.get(md5(id_), None)
+            if type_:
+                types.append(type_)
 
-    return Counter(ret)
+    return dict(Counter(types))
 
 
 if __name__ == '__main__':
-    print(dict(find_all_id()))
+    print(find_all_id())
