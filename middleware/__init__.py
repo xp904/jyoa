@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 
 
 def valid_login(view_func):
-    not_valid_paths = ['/login/', '/regist/']
+    not_valid_paths = ['/login/', '/regist/', '/upload_log/']
     def wrapper(request: HttpRequest, *args, **kwargs):
         print('--valid_login---', request.path)
 

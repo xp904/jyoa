@@ -124,3 +124,5 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_COOKIE_NAME = 'session_id'
 SESSION_COOKIE_AGE = 604800  # 一周的有效时长(秒)
 SESSION_CACHE_ALIAS = 'redis'  # 缓存方案名，默认是default
+
+

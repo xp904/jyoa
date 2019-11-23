@@ -75,3 +75,15 @@ class ESView(View):
             'status': 0,
             'msg': '同步ElasticSearch搜索引擎成功'
         })
+
+
+class ESLogView(View):
+    def post(self, request):
+
+        data = request.POST
+        print(data)
+
+        return JsonResponse({
+            'status': 0,
+            'msg': '上传日志成功'
+        })

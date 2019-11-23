@@ -9,8 +9,10 @@ PORT = 80  # 默认的是 9200
 INDEX = 'jyoa'
 
 
-def create_index():
-    url = f'http://{HOST}:{PORT}/{INDEX}'
+def create_index(index_name='jyoa'):
+    global INDEX
+    INDEX = index_name
+    url = f'http://{HOST}:{PORT}/{index_name}'
     json = {
         "settings": {
             "number_of_shards": 5,
