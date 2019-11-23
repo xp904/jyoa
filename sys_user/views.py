@@ -2,9 +2,15 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 from django.views import View
+from pymysql.cursors import DictCursor
+
 from sys_user.models import SysRole
 
+from django.db import connection
+
 # Create your views here.
+
+from common import es_
 
 class RoleView(View):
     def get(self, request):
@@ -45,4 +51,27 @@ class RoleView(View):
         return JsonResponse({
             'status': 0,
             'msg': '删除成功!'
+        })
+
+
+class ESView(View):
+    def get(self, request):
+        # 同步ES（初始化）
+        es_.create_index()
+
+        cursor = connection.cursor()
+        cursor.execute('select id,name,ord_sn,parent_id from t_category')
+        for row in cursor.fetchall():
+            doc = {
+                'id': row[0],
+                'name': row[1],
+                'ord_sn': row[2],
+                'parent_id': row[3]
+            }
+
+            es_.add_doc(doc, 'category')
+
+        return JsonResponse({
+            'status': 0,
+            'msg': '同步ElasticSearch搜索引擎成功'
         })

@@ -4,7 +4,7 @@ from django.urls import path
 
 from sys_user.models import SysUser
 from common import make_pwd
-from sys_user.views import RoleView
+from sys_user.views import RoleView, ESView
 
 
 def to_index(request: HttpRequest):
@@ -54,5 +54,6 @@ urlpatterns = [
     path('login/', to_login),
     path('logout/', to_logout),
     path('role/', RoleView.as_view()),
+    path('init_es/', ESView.as_view()),
     path('', to_index),
 ]
